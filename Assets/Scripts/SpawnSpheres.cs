@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnPlatforms : MonoBehaviour
+public class SpawnSpheres : MonoBehaviour
 {
     public GameObject spherePrefab;
     public int numberOfSpheres = 5;
@@ -8,12 +8,13 @@ public class SpawnPlatforms : MonoBehaviour
 
     private void Start()
     {
-        SpawnSpheres();
+        SpawnSpheresOnRod();
     }
 
-    void SpawnSpheres()
+    void SpawnSpheresOnRod()
     {
         float cylinderHeight = GetComponent<Renderer>().bounds.size.y;
+        
         Vector3 startPosition = transform.position - new Vector3(0, cylinderHeight / 2, 0);
 
 
