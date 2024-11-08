@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class _TestBoundsExample : MonoBehaviour
+public class _Test_Bounds : MonoBehaviour
 {
     void Start()
     {

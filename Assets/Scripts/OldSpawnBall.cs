@@ -2,9 +2,8 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
-public class SpawnBall : MonoBehaviour
+public class OldSpawnBall : MonoBehaviour
 {
-    [SerializeField] private SpawnCylinder _spawnCylinder;
     [SerializeField] private ControllerBall _ballPrefab;
     [SerializeField] private float _spawnHeight = 1f;
     [SerializeField] private int _delayTime = 1;
@@ -29,9 +28,9 @@ public class SpawnBall : MonoBehaviour
 
     void SpawnBallOnTopRod()
     {
-        float cylinderHeight = _spawnCylinder.GetHeightBlocks();
+        float cylinderHeight = _renderer.bounds.size.y;
 
-        Vector3 spawnPosition = transform.position + new Vector3(-1.5f, cylinderHeight * 2 + _spawnHeight, 0);
+        Vector3 spawnPosition = transform.position + new Vector3(-1.5f, cylinderHeight / 2 + _spawnHeight, 0);
 
         ControllerBall spawnedBall = Instantiate(_ballPrefab, spawnPosition, Quaternion.identity);
 

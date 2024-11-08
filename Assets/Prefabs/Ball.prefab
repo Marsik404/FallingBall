@@ -146,8 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f95564284355e40adf200c973aac0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
-  groundCheckDistance: 0.3
-  groundLayer:
+  _rb: {fileID: 0}
+  _jumpForce: 5
+  _groundCheckDistance: 0.3
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 64

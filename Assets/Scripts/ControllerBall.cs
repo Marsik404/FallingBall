@@ -1,22 +1,26 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]                               // adds a Rigidbody component to the Awake() method call
 public class ControllerBall : MonoBehaviour
 {
-    private Rigidbody _rb;
+    [SerializeField] private Rigidbody _rb;                         // if we don't drag?
+    [SerializeField] private float _jumpForce = 5f;
+    [SerializeField] private float _groundCheckDistance = 0.3f;
+    [SerializeField] private LayerMask _groundLayer;
+
     private bool _isGrounded;
 
-    public float jumpForce = 5f;
-    public float groundCheckDistance = 0.3f;
-    public LayerMask groundLayer;
-
-    private void Start()
+    private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
+        if (_rb == null)
+        {
+            _rb = GetComponent<Rigidbody>();
+        }
     }
 
     private void Update()
     {
-        _isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+        _isGrounded = Physics.Raycast(transform.position, Vector3.down, _groundCheckDistance, _groundLayer);
 
         if (_isGrounded)
         {
@@ -26,6 +30,6 @@ public class ControllerBall : MonoBehaviour
 
     void Jump()
     {
-        _rb.velocity = new Vector3(_rb.velocity.x, jumpForce, _rb.velocity.z);
+        _rb.velocity = new Vector3(_rb.velocity.x, _jumpForce, _rb.velocity.z);
     }
 }

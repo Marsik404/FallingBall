@@ -1,32 +1,56 @@
 using UnityEngine;
+using Cinemachine;
 
 public class CameraFollow : MonoBehaviour
 {
+    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] private SpawnBall _spawnBall;
+    [SerializeField] private Transform _startPoint;
+    [SerializeField] private float _moveDuration = 2f;
+
     private Transform _ball;
+    private bool _isMovingToBall = false;
+    private float _elapsedTime = 0f;
 
-    public float distanceFromBall = 5f;
-    public float heightOffset = 2f;
-    public float followSpeed = 2f;
-    public float horizontalAngle = 0f;
-    public float verticalAngle = 30f;
-
-    private void LateUpdate()
+    private void Start()
     {
-        if (_ball is not null)
+        if (_spawnBall != null)
         {
-            // Обчислюємо нову позицію для камери з урахуванням кутів
-            Quaternion rotation = Quaternion.Euler(verticalAngle, horizontalAngle, 0);
-            Vector3 offset = rotation * new Vector3(0, heightOffset, -distanceFromBall);
-            Vector3 targetPosition = _ball.position + offset;
+            _spawnBall.OnBallSpawned += SetBall;
+        }
 
-            transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+        if (_startPoint != null && _virtualCamera != null)
+        {
+            _virtualCamera.transform.position = _startPoint.position;
+        }
+    }
 
-            transform.LookAt(_ball);
+    private void Update()
+    {
+        if (_isMovingToBall && _ball != null)
+        {
+            _elapsedTime += Time.deltaTime;
+            float t = _elapsedTime / _moveDuration;
+
+            _virtualCamera.transform.position = Vector3.Lerp(_startPoint.position, _ball.position, t);
+
+            if (t >= 1f)
+            {
+                _isMovingToBall = false;
+                _virtualCamera.Follow = _ball;
+                _virtualCamera.transform.rotation = Quaternion.Euler(30f, 90f, 0f);
+            }
         }
     }
 
     public void SetBall(Transform newBall)
     {
         _ball = newBall;
+
+        if (_ball != null)
+        {
+            _isMovingToBall = true;
+            _elapsedTime = 0f;
+        }
     }
 }
