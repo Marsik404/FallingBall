@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 4887716822424234956}
   - component: {fileID: 6771290857572018488}
   - component: {fileID: 6243613986732633313}
+  - component: {fileID: 93079018054410090}
   m_Layer: 6
-  m_Name: Piece
+  m_Name: Segment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -383,7 +384,19 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.5984006, y: 0.5, z: 1.0881006}
   m_Center: {x: -1.7007997, y: 0, z: -0.2599433}
+--- !u!114 &93079018054410090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5584192053624268802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12d4b13f33cf114089f04f6b84675d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
