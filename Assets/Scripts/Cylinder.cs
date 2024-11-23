@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Cylinder : MonoBehaviour
 {
-    [SerializeField] LevelPlatform _levelPlatformPrefab;
-    [SerializeField] FinishPlatform _finishPlatformPrefab;
+    [SerializeField] private Platform _levelPlatformPrefab;
+    [SerializeField] private Platform _finishPlatformPrefab;
 
     public void AddPlatform(bool isFinish)
     {
@@ -13,11 +13,12 @@ public class Cylinder : MonoBehaviour
         //float cylinderHeight = GetComponent<Renderer>().bounds.size.y;
         //Vector3 spawnPosition = transform.position - new Vector3(0, cylinderHeight / 2, 0);
 
-        Platform platform = isFinish
-            ? Instantiate(_finishPlatformPrefab, transform.position /*spawnPosition*/, Quaternion.identity, transform)
-            : Instantiate(_levelPlatformPrefab, transform.position /*spawnPosition*/, Quaternion.identity, transform);
+
+
+        Platform prefab = isFinish ? _finishPlatformPrefab : _levelPlatformPrefab;
+        Platform platform = Instantiate(prefab, transform.position /*spawnPosition*/, Quaternion.identity, transform);
 
         // Call the platform method to add segments
-        platform.AddSegments();
+        platform.InitializeSegments();
     }
 }

@@ -4,8 +4,5 @@ using UnityEngine;
 
 public abstract class Platform : MonoBehaviour
 {
-    [SerializeField] protected Segment _segmentPrefab;
-
-    public abstract void AddSegments();
-
+    public abstract void InitializeSegments();
 }

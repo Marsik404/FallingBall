@@ -1,16 +1,24 @@
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
+using UnityEngine.ProBuilder;
 
 public class RodSpawner : MonoBehaviour
 {
     [SerializeField] private Cylinder _cylinderBlockPrefab;
     [SerializeField] private int _heightBlocks = 5;
 
-    private void Start()
-    {
-        BuildCylinder();
-    }
+    private Vector3 _highestPointRod;
+    public Vector3 HighestPointRod { get => _highestPointRod; }
 
-    public void BuildCylinder()
+
+    // TODO x Debug
+    //private void Start()
+    //{
+    //    BuildRod();
+    //    Debug.Log($"Total height of Rod: {_highestPointRod}");      // TODO x Debug.Log
+    //}
+
+    public void BuildRod()
     {
         float cylinderHeight = _cylinderBlockPrefab.GetComponent<Renderer>().bounds.size.y;
 
@@ -22,8 +30,10 @@ public class RodSpawner : MonoBehaviour
 
             // Pass the command to the new block to add the platform (the next element in the chain)
             newBlock.AddPlatform(i == 0);
-
             spawnPosition += new Vector3(0, cylinderHeight, 0);
         }
+
+        //_highestPointRod = _heightBlocks * cylinderHeight;                // TODO ? _highestPointRod int ?     
+        _highestPointRod = spawnPosition - new Vector3(0, 1f, 0);            // the upper face of the last cylinder
     }
 }
