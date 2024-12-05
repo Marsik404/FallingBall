@@ -8,33 +8,20 @@ public class LevelSpawner : MonoBehaviour
     [SerializeField] private BallSpawner _ballSpawner;
     [SerializeField] private CameraSpawner _cameraSpawner;
 
+    private BallController _ball;       // not yet use in other scripts, just saving Instantiate
+    private CameraController _camera;   // not yet use in other scripts, just saving Instantiate
+
 
 
     void Start()
     {
-        // TODO x Debug
-        //StartCoroutine(Example());
-
-
         _rodSpawner.BuildRod();
 
-        _ballSpawner.SetRodSpawner(_rodSpawner);
+        _ball = _ballSpawner.CreateBall(_rodSpawner._highestPointRod);
 
-        ControllerBall ball = _ballSpawner.CreateBall();
-        
-        _cameraSpawner.CreateCamera(ball);
+        _camera = _cameraSpawner.CreateCamera(_ball.transform);
+
+        _camera.FollowBall(_ball.transform);
 
     }
-
-    // TODO x Debug
-    //IEnumerator Example()
-    //{
-    //    yield return new WaitForSeconds(2f);
-    //    _rodSpawner.BuildRod();
-    //    yield return new WaitForSeconds(2f);
-    //    ControllerBall ball = _ballSpawner.CreateBall();
-    //    yield return new WaitForSeconds(2f);
-    //    _cameraSpawner.CreateCamera(ball);
-    //}
-
 }

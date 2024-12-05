@@ -1,39 +1,41 @@
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.ProBuilder;
+using System.Collections.Generic;
 
 public class RodSpawner : MonoBehaviour
 {
     [SerializeField] private Cylinder _cylinderBlockPrefab;
     [SerializeField] private int _heightBlocks = 5;
+    [SerializeField, Range(1, 5)] private int _heightSpawnBall = 5;
 
-    private Vector3 _highestPointRod;
-    public Vector3 HighestPointRod { get => _highestPointRod; }
+    public Vector3 _highestPointRod { get; private set; }
+
+    private List<Cylinder> _cylinderBloks = new List<Cylinder>();
 
 
-    // TODO x Debug
-    //private void Start()
-    //{
-    //    BuildRod();
-    //    Debug.Log($"Total height of Rod: {_highestPointRod}");      // TODO x Debug.Log
-    //}
 
     public void BuildRod()
     {
         float cylinderHeight = _cylinderBlockPrefab.GetComponent<Renderer>().bounds.size.y;
 
-        Vector3 spawnPosition = transform.position + new Vector3(0, cylinderHeight / 2, 0);
+        Vector3 faceCylinder = new Vector3(0, cylinderHeight / 2, 0);                           // "cylinderHeight / 2" - the face of the cylinder
+
+        Vector3 spawnPosition = transform.position + new Vector3(0, cylinderHeight / 2, 0);     // "cylinderHeight / 2" - the 1-st cylinder is on the 0 plane
 
         for (int i = 0; i < _heightBlocks; i++)
         {
-            Cylinder newBlock = Instantiate(_cylinderBlockPrefab, spawnPosition, Quaternion.identity, transform);
+            _cylinderBloks.Add(Instantiate(_cylinderBlockPrefab, spawnPosition, Quaternion.identity, transform));
 
-            // Pass the command to the new block to add the platform (the next element in the chain)
-            newBlock.AddPlatform(i == 0);
+            // Pass the command to the new block to add the platform (the next element in the "chain")
+            _cylinderBloks[i].AddPlatform(i == 0);
+
             spawnPosition += new Vector3(0, cylinderHeight, 0);
-        }
 
-        //_highestPointRod = _heightBlocks * cylinderHeight;                // TODO ? _highestPointRod int ?     
-        _highestPointRod = spawnPosition - new Vector3(0, 1f, 0);            // the upper face of the last cylinder
+            if (i == _heightSpawnBall - 1)
+            {
+                _highestPointRod = _cylinderBloks[i].transform.position + faceCylinder;            // the upper face of the last cylinder
+            }
+        }
     }
 }

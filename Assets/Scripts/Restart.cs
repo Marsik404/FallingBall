@@ -6,7 +6,7 @@ public class Restart : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out ControllerBall controller))
+        if (other.TryGetComponent(out BallController controller))
         {
             RestartScene();
         }

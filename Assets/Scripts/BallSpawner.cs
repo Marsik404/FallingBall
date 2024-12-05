@@ -3,49 +3,19 @@ using UnityEngine;
 
 public class BallSpawner : MonoBehaviour
 {
-    [SerializeField] private ControllerBall _ballPrefab;
+    [SerializeField] private BallController _ballPrefab;
+    [SerializeField] private Vector3 _offsetSpawnBall = new Vector3(-1.5f, 2f, 0);
 
-    private RodSpawner _rodSpawner;
+    private BallController _ball;   // not yet use in other scripts, just saving Instantiate
 
-    public void SetRodSpawner(RodSpawner rodSpawner)            // TODO ? properies?
+
+
+    public BallController CreateBall(Vector3 spawnPointBall)    // TODO ? (Transform instead Vector3?)
     {
-        _rodSpawner = rodSpawner;
+        Vector3 spawnPosition = spawnPointBall + _offsetSpawnBall;
+
+        _ball = Instantiate(_ballPrefab, spawnPosition, Quaternion.identity);
+
+        return _ball;
     }
-
-
-
-    // TODO x Debug
-    //private void Start()          
-    //{
-    //    Invoke("CreateBall", 1f);
-    //}
-
-
-
-    public ControllerBall CreateBall()
-    {
-        Vector3 cylinderHeight = _rodSpawner.HighestPointRod;
-
-        Vector3 spawnPosition = cylinderHeight + new Vector3(-1.5f, 2f, 0);
-
-        ControllerBall ball = Instantiate(_ballPrefab, spawnPosition, Quaternion.identity);
-
-        return ball;
-    }
-
-
-
-
-
-    //    ////// v.1 We transfer the object to the camera
-    //    ////CameraFollow cameraFollow = FindObjectOfType<CameraFollow>();
-    //    ////if (cameraFollow != null)
-    //    ////{
-    //    ////    cameraFollow.SetBall(spawnedBall.transform);
-    //    ////}
-
-
-    //    ////// v.2 We transfer the object to the camera
-    //    //OnBallSpawned?.Invoke(spawnedBall.transform);
-    //}
 }

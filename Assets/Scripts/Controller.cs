@@ -5,6 +5,8 @@ public class Controller : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed = 100f;
 
+
+
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");

@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 2313720657017440972}
-  _jumpForce: 5
+  _jumpForce: 4
   _groundCheckDistance: 0.3
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64

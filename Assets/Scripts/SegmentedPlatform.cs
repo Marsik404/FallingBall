@@ -5,9 +5,13 @@ using UnityEngine;
 public abstract class SegmentedPlatform : Platform
 {
     protected const int _dividePlatformIntoSectors = 6;
+
     [SerializeField] protected Segment _segmentPrefab;
 
-    //protected void InitializeSegments(int segmentsToSpawn = 6, float radius = 0f)     // TODO ? v.2
+    private Segment _segment;   // TODO ? not yet use in other scripts, just saving Instantiate
+
+
+
     protected void InitializeSegments(int segmentsToSpawn, int dividePlatformIntoSectors, float radius = 0f)
     {
         HashSet<int> listSectors = new HashSet<int>();
@@ -19,7 +23,7 @@ public abstract class SegmentedPlatform : Platform
             int randomSector;
             do
             {
-                randomSector = Random.Range(0, dividePlatformIntoSectors);          // TODO ? 0 - magic numbers?
+                randomSector = Random.Range(0, dividePlatformIntoSectors);
             } while (listSectors.Contains(randomSector));
 
             listSectors.Add(randomSector);
@@ -27,15 +31,16 @@ public abstract class SegmentedPlatform : Platform
             float angle = randomSector * angleStepForSegment * Mathf.Deg2Rad;       // Convert degrees to radians
 
             // Calculate the position of the segment based on the angle
+            //Vector3 sectorOffsetHorizontal = transform.position;    // TODO ?(without radius)   
             Vector3 sectorOffsetHorizontal = transform.position + new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
 
-            Segment segment = Instantiate(_segmentPrefab, sectorOffsetHorizontal, Quaternion.identity);
+            _segment = Instantiate(_segmentPrefab, sectorOffsetHorizontal, Quaternion.identity);
 
             // Calculate the rotation of the segment so that the nose points to the center
             Quaternion rotation = Quaternion.LookRotation(new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)), Vector3.up);
 
-            segment.transform.rotation = rotation;
-            segment.transform.parent = transform;
+            _segment.transform.rotation = rotation;
+            _segment.transform.parent = transform;
         }
     }
 }

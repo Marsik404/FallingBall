@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 4887716822424234956}
   - component: {fileID: 6771290857572018488}
   - component: {fileID: 6243613986732633313}
-  - component: {fileID: 93079018054410090}
+  - component: {fileID: 5563714298872116327}
   m_Layer: 6
-  m_Name: Segment
+  m_Name: TestSegmentX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
-    m_ManualUV: 0
+    m_ManualUV: 1
     elementGroup: 0
     m_TextureGroup: -1
   - m_Indexes: 120000001100000010000000120000001300000011000000
@@ -83,7 +83,7 @@ MonoBehaviour:
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
-    m_ManualUV: 0
+    m_ManualUV: 1
     elementGroup: -1
     m_TextureGroup: -1
   - m_Indexes: 160000001500000014000000160000001700000015000000
@@ -100,7 +100,7 @@ MonoBehaviour:
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
-    m_ManualUV: 0
+    m_ManualUV: 1
     elementGroup: -1
     m_TextureGroup: -1
   m_SharedVertices:
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2178
+  m_VersionIndex: 2268
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -388,7 +388,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5984006, y: 0.5, z: 1.0881006}
   m_Center: {x: -1.7007997, y: 0, z: -0.2599433}
---- !u!114 &93079018054410090
+--- !u!114 &5563714298872116327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

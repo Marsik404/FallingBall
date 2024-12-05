@@ -2,7 +2,7 @@ using UnityEngine;
 
 // TODO ControllerBall
 [RequireComponent(typeof(Rigidbody))]                               // adds a Rigidbody component to the Awake() method call
-public class ControllerBall : MonoBehaviour
+public class BallController : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rb;                         // TODO if we don't drag?
     [SerializeField] private float _jumpForce = 5f;

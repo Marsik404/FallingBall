@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class CameraSpawner : MonoBehaviour
 {
-    [SerializeField] private CameraSpawner _cameraSpawner;
-
-    private ControllerBall _ball;
-
-    // TODO x Debug
-    [SerializeField] private Vector3 _offset;
+    [SerializeField] private CameraController _cameraPrefab;
+    
+    private CameraController _camera;   // not yet use in other scripts, just saving Instantiate
 
 
 
-    public void CreateCamera(ControllerBall ball)
+    public CameraController CreateCamera(Transform spawnPointCamera)
     {
-        _ball = ball;
-    }
+        _camera = Instantiate(_cameraPrefab, spawnPointCamera.transform.position, Quaternion.identity);
 
-    void Update()
-    {
-        // TODO x Debug
-        transform.position = _ball.transform.position + _offset;    // TODO ? Need check on the null? if _ball == null, but its bad practice
+        // v.2
+        //_camera.FollowBall(spawnPointCamera);
+
+        return _camera;
     }
 }
