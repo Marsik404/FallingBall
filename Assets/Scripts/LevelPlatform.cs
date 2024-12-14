@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class LevelPlatform : SegmentedPlatform
@@ -14,7 +11,8 @@ public class LevelPlatform : SegmentedPlatform
     {
         int segmentsToSpawn = Random.Range(_minSerments, _maxSerments);
 
-        InitializeSegments(segmentsToSpawn, _dividePlatformIntoSectors);
+        InitializeSegments(segmentsToSpawn, DIVIDE_PLATFORM_INTO_SECTORS);
     }
+
 }
 

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FinishPlatform : SegmentedPlatform
 {
     public override void InitializeSegments()
     {
-        InitializeSegments(_dividePlatformIntoSectors, _dividePlatformIntoSectors);
+        InitializeSegments(DIVIDE_PLATFORM_INTO_SECTORS, DIVIDE_PLATFORM_INTO_SECTORS);
     }
 }

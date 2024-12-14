@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BallSpawner : MonoBehaviour
@@ -10,7 +9,7 @@ public class BallSpawner : MonoBehaviour
 
 
 
-    public BallController CreateBall(Vector3 spawnPointBall)    // TODO ? (Transform instead Vector3?)
+    public BallController CreateBall(Vector3 spawnPointBall)
     {
         Vector3 spawnPosition = spawnPointBall + _offsetSpawnBall;
 

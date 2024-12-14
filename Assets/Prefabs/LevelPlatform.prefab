@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _segmentPrefab: {fileID: 93079018054410090, guid: dce72e84ad6ad07459e9b20141af2eb9, type: 3}
   _minSerments: 4
-  _maxSerments: 5
+  _maxSerments: 6

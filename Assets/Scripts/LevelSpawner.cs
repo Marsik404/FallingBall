@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelSpawner : MonoBehaviour
@@ -8,18 +6,31 @@ public class LevelSpawner : MonoBehaviour
     [SerializeField] private BallSpawner _ballSpawner;
     [SerializeField] private CameraSpawner _cameraSpawner;
 
+    [SerializeField, Range(1, 100)] private int _heightSpawnBall = 5;
+    [SerializeField, Range(0.1f, 5f)] private float _heightCrashSegment = 3;
+
+
     private BallController _ball;       // not yet use in other scripts, just saving Instantiate
     private CameraController _camera;   // not yet use in other scripts, just saving Instantiate
+    private int _heightBlocks;
 
 
 
     void Start()
     {
+        _heightBlocks = _rodSpawner.HeightBlocks;
+
+        _heightSpawnBall = Mathf.Clamp(_heightSpawnBall, 1, _heightBlocks);
+
         _rodSpawner.BuildRod();
 
-        _ball = _ballSpawner.CreateBall(_rodSpawner._highestPointRod);
+        _rodSpawner.SetHighestSpawnBall(_heightSpawnBall);
 
-        _camera = _cameraSpawner.CreateCamera(_ball.transform);
+        _ball = _ballSpawner.CreateBall(_rodSpawner.HightPointRod);
+
+        _ball.SetHeightCrashSegment(_heightCrashSegment);
+
+        _camera = _cameraSpawner.CreateCamera(_ball.transform.position);
 
         _camera.FollowBall(_ball.transform);
 

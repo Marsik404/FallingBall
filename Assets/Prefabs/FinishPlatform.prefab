@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 600533096725253830}
   - component: {fileID: 2824888210532216520}
+  - component: {fileID: -3695358953597015353}
+  - component: {fileID: 1010382002982445543}
   m_Layer: 0
   m_Name: FinishPlatform
   m_TagString: Untagged
@@ -45,3 +47,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _segmentPrefab: {fileID: 93079018054410090, guid: dce72e84ad6ad07459e9b20141af2eb9, type: 3}
+--- !u!114 &-3695358953597015353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6809857798461996407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cf8dc440b8e2c48947821c3e682017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1010382002982445543
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6809857798461996407}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 1, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}

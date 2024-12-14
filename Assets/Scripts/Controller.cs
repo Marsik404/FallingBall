@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// TODO Controller
 public class Controller : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed = 100f;
