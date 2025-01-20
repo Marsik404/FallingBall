@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 600533096725253830}
   - component: {fileID: 2824888210532216520}
-  - component: {fileID: -3695358953597015353}
   - component: {fileID: 1010382002982445543}
   m_Layer: 0
   m_Name: FinishPlatform
@@ -47,18 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _segmentPrefab: {fileID: 93079018054410090, guid: dce72e84ad6ad07459e9b20141af2eb9, type: 3}
---- !u!114 &-3695358953597015353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6809857798461996407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1cf8dc440b8e2c48947821c3e682017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1010382002982445543
 BoxCollider:
   m_ObjectHideFlags: 0

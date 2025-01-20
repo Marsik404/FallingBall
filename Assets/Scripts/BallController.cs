@@ -9,7 +9,6 @@ public class BallController : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
 
     private bool _isGrounded;
-    private float _heightCrashSegment;  // TODO here?
     private float _totalFallDistance;
     private float _previousHeight;
 
@@ -40,30 +39,18 @@ public class BallController : MonoBehaviour
         _rb.velocity = new Vector3(_rb.velocity.x, _jumpForce, _rb.velocity.z);
     }
 
-    private void OnTriggerEnter(Collider other) // TODO Here or in Segment?
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Segment segment))
+        if (gameObject.layer == LayerMask.NameToLayer("BallMainLayer"))
         {
-            Debug.Log($"Ball entered segment Name: {segment.name} - {_totalFallDistance}");
-
-            if (_totalFallDistance >= _heightCrashSegment)
+            if (other.TryGetComponent(out Segment segment))
             {
-                Debug.Log($"Crash: {_totalFallDistance}");
-
-                _totalFallDistance = 0;
-                Destroy(segment.gameObject);
-                Jump();
-
-                // TODO ? v.2
-                // Vector3 position = -segment.transform.right * 2;
-                // segment.transform.localPosition += position;
+                Debug.Log($"Ball entered segment Name: {segment.name} - {_totalFallDistance}");
+                //Jump();
+                segment.DestroySegment(_totalFallDistance);
+                //_totalFallDistance = 0;
             }
         }
-    }
-
-    public void SetHeightCrashSegment(float heightCrashSegment) // TODO ? Prop?
-    {
-        _heightCrashSegment = heightCrashSegment;
     }
 
 

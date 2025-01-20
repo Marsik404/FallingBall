@@ -4,10 +4,10 @@ using System.Collections.Generic;
 public class RodSpawner : MonoBehaviour
 {
     [SerializeField] private Cylinder _cylinderBlockPrefab;
-    
+
     [SerializeField, Range(1, 30)] private int _heightBlocks = 5;
     public int HeightBlocks { get => _heightBlocks; }
-    
+
     public Vector3 HightPointRod { get; private set; }
 
     private List<Cylinder> _cylinderBloks = new List<Cylinder>();
@@ -25,6 +25,7 @@ public class RodSpawner : MonoBehaviour
         for (int i = 0; i < _heightBlocks; i++)
         {
             Cylinder instanceCylinder = Instantiate(_cylinderBlockPrefab, spawnPosition, Quaternion.identity, transform);
+            instanceCylinder.name = $"Cylinder_{i + 1}";
             _cylinderBloks.Add(instanceCylinder);
 
             // Pass the command to the new block to add the platform (the next element in the "chain")

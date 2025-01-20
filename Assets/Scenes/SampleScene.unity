@@ -155,8 +155,7 @@ MonoBehaviour:
   _rodSpawner: {fileID: 727388174}
   _ballSpawner: {fileID: 792675870}
   _cameraSpawner: {fileID: 952491215}
-  _heightSpawnBall: 15
-  _heightCrashSegment: 1
+  _heightSpawnBall: 57
 --- !u!4 &207756441
 Transform:
   m_ObjectHideFlags: 0
@@ -312,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cylinderBlockPrefab: {fileID: 8232688525058362656, guid: cadf05832a57c8b468acbb8a8e7111fa, type: 3}
-  _heightBlocks: 10
+  _heightBlocks: 3
 --- !u!114 &727388175
 MonoBehaviour:
   m_ObjectHideFlags: 0
