@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12d4b13f33cf114089f04f6b84675d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heightCrashSegment: 3
+  _heightCrashSegment: 1
   _horizontalMoveDistance: 10
   _horizontalMoveDuration: 0.4
   _verticalMoveDistance: 10

@@ -13,7 +13,7 @@ public class RodSpawner : MonoBehaviour
     private List<Cylinder> _cylinderBloks = new List<Cylinder>();
 
 
-
+    // TODO return Rod;
     public void BuildRod()
     {
         float cylinderHeight = GetHeightCylinder();
@@ -52,6 +52,7 @@ public class RodSpawner : MonoBehaviour
         }
     }
 
+    // TODO move to Rod
     private float GetHeightCylinder()
     {
         float cylinderHeight = _cylinderBlockPrefab.GetComponent<Renderer>().bounds.size.y;

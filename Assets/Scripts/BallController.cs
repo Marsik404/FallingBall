@@ -29,7 +29,7 @@ public class BallController : MonoBehaviour
 
         if (_isGrounded)
         {
-            _totalFallDistance = 0; // TODO ? move to Jump?
+            _totalFallDistance = 0;
             Jump();
         }
     }
@@ -46,9 +46,10 @@ public class BallController : MonoBehaviour
             if (other.TryGetComponent(out Segment segment))
             {
                 Debug.Log($"Ball entered segment Name: {segment.name} - {_totalFallDistance}");
-                //Jump();
-                segment.DestroySegment(_totalFallDistance);
-                //_totalFallDistance = 0;
+
+                Jump();
+                segment.TouchedSegment(_totalFallDistance);
+                _totalFallDistance = 0;
             }
         }
     }

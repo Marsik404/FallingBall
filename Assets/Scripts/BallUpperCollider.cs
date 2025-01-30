@@ -7,7 +7,7 @@ public class BallUpperCollider : MonoBehaviour
         if (other.TryGetComponent(out Segment segment))
         {
             Debug.Log($"UpperCollider touched segment: {segment.name}");
-            segment.DestroySegmentsAbove();
+            //segment.DestroySegmentsAbove();
         }
     }
 }

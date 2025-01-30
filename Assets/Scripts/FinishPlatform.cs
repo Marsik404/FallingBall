@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,17 +12,9 @@ public class FinishPlatform : SegmentedPlatform
     {
         if (other.TryGetComponent(out BallController controller))
         {
-            CancelAnimations();
-            //DestroyAllSegments();
-            RestartScene();
-        }
-    }
+            CancelAnimation();
 
-    private void CancelAnimations()
-    {
-        if (_cancellationTokenSource != null)
-        {
-            _cancellationTokenSource.Cancel();
+            RestartScene();
         }
     }
 

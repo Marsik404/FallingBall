@@ -1,23 +1,26 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class SegmentedPlatform : Platform
 {
     protected const int DIVIDE_PLATFORM_INTO_SECTORS = 6;
-    protected CancellationTokenSource _cancellationTokenSource;
 
     [SerializeField] protected Segment _segmentPrefab;
 
     private List<Segment> _segments = new List<Segment>();    // not yet use in other scripts, just saving Instantiate
+
+    //protected CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationToken _cancellationToken;
 
 
 
     protected void InitializeSegments(int segmentsToSpawn, int dividePlatformIntoSectors, float radius = 0f)
     {
         _cancellationTokenSource = new CancellationTokenSource();
+        _cancellationToken = _cancellationTokenSource.Token;
 
         HashSet<int> listSectors = new HashSet<int>();
         float angleStepForSegment = 360f / dividePlatformIntoSectors;
@@ -26,8 +29,9 @@ public abstract class SegmentedPlatform : Platform
         {
             Segment instanceSegment = Instantiate(_segmentPrefab, transform);
             instanceSegment.name = $"Segment_{i + 1}";
-            instanceSegment.SetCancellationTokenSource(_cancellationTokenSource);
-            instanceSegment.SetPlatform(this);
+            instanceSegment.SegmentTookTheBall += DestroyPlatform;
+            //instanceSegment.SetCancellationTokenSource(_cancellationTokenSource);
+            //instanceSegment.SetPlatform(this);
             _segments.Add(instanceSegment);
 
             // TODO find logic is better. We choose a random sector for the segment until we find a free one.
@@ -51,34 +55,74 @@ public abstract class SegmentedPlatform : Platform
         }
     }
 
-    protected void DestroyAllSegments()
-    {
-        foreach (var segment in _segments)
-        {
-            if (segment != null)
-            {
-                Destroy(segment.gameObject);
-            }
-        }
-        _segments.Clear();
-    }
-
-    public IReadOnlyList<Segment> GetSegments()
-    {
-        return _segments.AsReadOnly();
-    }
-
-    //// V.1 Destroy Segment + Platform
-    //public async Task DestroyPlatform()
+    //public IReadOnlyList<Segment> GetSegments()
     //{
-    //    foreach (Segment segment in _segments)
+    //    return _segments.AsReadOnly();
+    //}
+
+
+    protected void CancelAnimation()
+    {
+        _cancellationTokenSource.Cancel();
+    }
+
+
+
+
+
+
+    //public void DestroySegmentsAboveBall(Vector3 ballPosition)
+    //{
+    //    List<Segment> segmentsToRemove = new List<Segment>();
+
+
+    //    foreach (var segment in _segments)
     //    {
-    //        if (segment != null)
+    //        if (segment.transform.position.y > ballPosition.y)
     //        {
-    //            Destroy(segment.gameObject);
+    //            segmentsToRemove.Add(segment);
     //        }
     //    }
-    //    Destroy(gameObject);    // Destroy Platform
+
+    //    foreach (var segment in segmentsToRemove)
+    //    {
+    //        _segments.Remove(segment);
+    //        Destroy(segment.gameObject);
+    //    }
     //}
+
+
+
+
+
+    public async void DestroyPlatform(Segment segment)
+    {
+        List<Task> animationTasks = new List<Task>();
+
+        foreach (Segment bufferSegment in _segments)
+        {
+            if (bufferSegment != null)
+            {
+                var task = bufferSegment.AnimateCrashAsync(_cancellationToken);
+                animationTasks.Add(task);
+            }
+        }
+
+        await Task.WhenAll(animationTasks);
+
+        foreach (Segment bufferSegment in _segments)
+        {
+            if (bufferSegment != null)
+            {
+                Destroy(bufferSegment.gameObject);
+            }
+        }
+
+        _segments.Clear();
+        Destroy(gameObject);
+    }
+
+
+
 
 }

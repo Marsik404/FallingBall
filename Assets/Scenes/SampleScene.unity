@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cylinderBlockPrefab: {fileID: 8232688525058362656, guid: cadf05832a57c8b468acbb8a8e7111fa, type: 3}
-  _heightBlocks: 3
+  _heightBlocks: 5
 --- !u!114 &727388175
 MonoBehaviour:
   m_ObjectHideFlags: 0
